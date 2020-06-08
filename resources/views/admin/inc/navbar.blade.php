@@ -20,12 +20,11 @@
                 <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user mr-2 user-avatar-md rounded-circle"></i></a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                        <div clasFs="nav-user-info">
-                            <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name }}</h5>
-
-                            <span class="status"></span><span class="ml-2">Available</span>
+                        <div class="nav-user-info">
+                            <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->name }} </h5>
+                            <span class="status"></span><span class="ml-2">Logged in</span>
                         </div>
-                        <a class="dropdown-item" href="#"><i class="fa fa-user mr-2"></i>Account</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-user mr-2"></i>Admin Dashboard</a>
                         <!-- <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>-->
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -104,16 +103,17 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-2"><i class="fa fa-fw fa-user-circle"></i>Artist</a>
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/artists/all">Edit Artist <span class="badge badge-secondary">View Artist</span></a>
+                                    <a class="nav-link" href="/artist/1/edit">Edit Artist <span class="badge badge-secondary">Edit Artist</span></a>
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-2"><i class="fas fa-fw fa-table"></i>Events</a>
                         <div id="submenu-6" class="collapse submenu" style="">
@@ -140,11 +140,14 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/artist/1/edit" aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Edit Artist</a>
+                    </li>
                      <li class="nav-item">
                         <a class="nav-link" href="/comp-details/1/edit" aria-expanded="false"><i class="fas fa-fw fa-chart-pie"></i>Edit Company Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contacts/create" aria-expanded="false"><i class="fas fa-fw fa-chart-pie"></i>Contacts</a>
+                        <a class="nav-link" href="/contact/create" aria-expanded="false"><i class="fas fa-fw fa-chart-pie"></i>Contacts</a>
                     </li>
                 </ul>
             </div>

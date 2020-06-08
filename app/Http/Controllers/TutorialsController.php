@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Contact;
 
-class ContactsController extends Controller
+class TutorialsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
     public function index()
     {
-        return view('contact.index');
+        //
     }
 
     /**
@@ -28,9 +23,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        $new = new Contact();
-        $contacts = $new->getContacts();
-        return view('contact.show')->with('contacts', $contacts);
+        //
     }
 
     /**
@@ -41,21 +34,7 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'fname' => 'required',
-            'lname' => 'required',
-            'email' => 'required',
-            'subject' => 'required',
-            'message' => 'required'
-        ]);
-        $contact = new Contact;
-        $contact->first_name = $request->input('fname');
-        $contact->last_name = $request->input('lname');
-        $contact->email = $request->input('email');
-        $contact->subject = $request->input('subject');
-        $contact->message = $request->input('message');
-        $contact->save();
-        return redirect('/contact')->with('success', 'Your message has been sent successfully');
+        //
     }
 
     /**

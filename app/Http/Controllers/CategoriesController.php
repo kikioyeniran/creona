@@ -12,9 +12,15 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
     public function index()
     {
-        //
+        $new = new Category();
+        $categories = $new->getCategories();
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -24,7 +30,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $new = new Category();
+        $categories = $new->getCategories();
+        return view('categories.create')->with('categories', $categories);
     }
 
     /**
@@ -35,7 +43,23 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $name = $request->input('name');
+        $arr = explode(" ", $name);
+        if (!empty($arr)) {
+            $link = strtolower(join("-", $arr));
+        } else {
+            $link = strtolower($name);
+        }
+
+        $category = new Category();
+        $category->name = $name;
+        $category->link = $link;
+        $category->save();
+
+        return redirect('/categories')->with('success', 'Post created');
     }
 
     /**
@@ -57,7 +81,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit')->with('post', $category);
     }
 
     /**
@@ -69,7 +94,23 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $name = $request->input('name');
+        $arr = explode(" ", $name);
+        if (!empty($arr)) {
+            $link = strtolower(join("-", $arr));
+        } else {
+            $link = strtolower($name);
+        }
+
+        $category = Category::find($id);
+        $category->name = $name;
+        $category->link = $link;
+        $category->save();
+
+        return redirect('/categories')->with('success', 'Post edited');
     }
 
     /**
@@ -81,5 +122,30 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    // Archive category
+    public function disable($id)
+    {
+        $category = Category::find($id);
+        $category->disabled = 'true';
+        $category->save();
+        return redirect('/categories')->with('success', 'Post Disabled');
+    }
+
+    // Restore Disabled category
+    public function restore($id)
+    {
+        $category = Category::find($id);
+        $category->disabled = 'false';
+        $category->save();
+        return redirect('/categories/disabled')->with('success', 'Post Restored');
+    }
+
+    // Display Disabled Categories
+    public function disabled()
+    {
+        $new = new Category();
+        $d_categories = $new->getDisCategories();
+        return view('categories.disabled')->with('categories', $d_categories);
     }
 }

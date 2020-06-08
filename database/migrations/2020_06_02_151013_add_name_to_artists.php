@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLinkToCat extends Migration
+class AddNameToArtists extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddLinkToCat extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('link');
+        Schema::table('artists', function (Blueprint $table) {
+            $table->string('name');
         });
     }
 
@@ -25,8 +25,8 @@ class AddLinkToCat extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('link');
+        Schema::table('artists', function (Blueprint $table) {
+            $table->dropColumn('name');
         });
     }
 }
