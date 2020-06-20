@@ -15,7 +15,7 @@ class CompanyDetailsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware(['auth', 'can:verify-admin'], ['except' => ['index', 'show']]);
     }
     public function index()
     {

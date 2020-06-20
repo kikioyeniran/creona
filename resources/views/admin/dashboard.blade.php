@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('featured.layouts.app')
 
 @section('content')
 <div class="dashboard-ecommerce">

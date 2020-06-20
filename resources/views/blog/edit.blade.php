@@ -33,7 +33,7 @@
             <div class="card">
                 <h5 class="card-header">Add News Article</h5>
                 <div class="card-body">
-                    {!! Form::open(['action' => ['NewsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['action' => ['BlogController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div class="form-group">

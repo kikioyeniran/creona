@@ -15,13 +15,13 @@ class BlogController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'displayByLink']]);
+        $this->middleware(['auth', 'can:verify-admin'], ['except' => ['index', 'show', 'displayByLink']]);
     }
     public function index()
     {
         $new = new Blog();
         $blog = $new->getBlogs();
-        return view('blog.index')->with('blog', $blog);
+        return view('blog.index')->with('blogs', $blog);
     }
     public function all()
     {
@@ -34,7 +34,9 @@ class BlogController extends Controller
     {
         $new = new blog();
         $blog = $new->getBlogsByLink($link);
-        return view('blog.show')->with('blog', $blog);
+        $new2 = new Blog();
+        $all_blogs = $new2->getBlogs();
+        return view('blog.show')->with(['blog' => $blog, 'all_blogs' => $all_blogs]);
     }
 
     /**

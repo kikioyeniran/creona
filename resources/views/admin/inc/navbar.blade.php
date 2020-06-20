@@ -25,6 +25,7 @@
                             <span class="status"></span><span class="ml-2">Logged in</span>
                         </div>
                         <a class="dropdown-item" href="#"><i class="fa fa-user mr-2"></i>Admin Dashboard</a>
+                        <a class="dropdown-item" href="{{ route('admin.users.index')}}"><i class="fa fa-user mr-2"></i>User Management</a>
                         <!-- <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>-->
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -103,6 +104,70 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-2"><i class="fas fa-newspaper"></i>Art Services</a>
+                        <div id="submenu-5" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/art-services/all">View Art Services <span class="badge badge-secondary">View Art Services</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/art-services/create">Add New Art Service</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/art-services/disabled">Disabled Art Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-2"><i class="fas fa-newspaper"></i>E-books</a>
+                        <div id="submenu-6" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ebooks/all">View E-books <span class="badge badge-secondary">View E-books</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ebooks/create">Add New E-books</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ebooks/disabled">Disabled E-books</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-2"><i class="fas fa-newspaper"></i>Cards</a>
+                        <div id="submenu-9" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/cards/all">View Cards <span class="badge badge-secondary">View Cards</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/cards/create">Add New Card</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/cards/disabled">Disabled Cards</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-2"><i class="fas fa-newspaper"></i>Tutorials</a>
+                        <div id="submenu-7" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/tutorials/all">View Tutorials <span class="badge badge-secondary">View Tutorials</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/tutorials/create">Add New Tutorials</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/tutorials/disabled">Disabled Tutorials</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-2"><i class="fa fa-fw fa-user-circle"></i>Artist</a>
@@ -114,22 +179,28 @@
                             </ul>
                         </div>
                     </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-2"><i class="fas fa-fw fa-table"></i>Events</a>
-                        <div id="submenu-6" class="collapse submenu" style="">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-2"><i class="fas fa-fw fa-table"></i>Featured Works</a>
+                        <div id="submenu-10" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/events/all">View Events <span class="badge badge-secondary">View blog</span></a>
+                                    <a class="nav-link" href="/featured-works/admin/all">All Featured Works <span class="badge badge-secondary">View All Featured Works</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/events/create">Add Event</a>
+                                    <a class="nav-link" href="/featured-works/admin/pending">Pending Featured Works</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/events/archived">Archived Events</a>
+                                    <a class="nav-link" href="/featured-works/admin/disabled">Disabled Featured Works</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/featured-works/admin/approved">Approved Featured Works</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/featured-works/admin/disapproved">Disapproved Featured Works</a>
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-4"><i class="fas fa-images"></i>Gallery</a>
                         <div id="submenu-8" class="collapse submenu" style="">
@@ -141,7 +212,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/artist/1/edit" aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Edit Artist</a>
+                        <a class="nav-link" href="/artist/1/edit" aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Edit Main Artist</a>
                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="/comp-details/1/edit" aria-expanded="false"><i class="fas fa-fw fa-chart-pie"></i>Edit Company Details</a>

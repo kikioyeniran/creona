@@ -52,7 +52,7 @@
                             <!-- /.figure-img -->
                             <!-- .figure-caption -->
                             <figcaption class="figure-caption">
-                                <h3 class="figure-title"><a href="/Blog/{{$post->id}}/edit">{{$post->title}}</a></h3>
+                                <h3 class="figure-title"><a href="/blog/{{$post->id}}/edit">{{$post->title}}</a></h3>
                                 <p class="text-muted mb-0">AUTHOR: {{$post->author}} </p>
                                 <p class="text-muted mb-0">SUMMARY:<br/> {{$post->summary}} </p>
                             </figcaption>

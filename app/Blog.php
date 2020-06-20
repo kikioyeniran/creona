@@ -23,7 +23,7 @@ class Blog extends Model
     }
     public function getBlogsByLink($link)
     {
-        $blog = $this::where('link', $link)->where('archived', 'false')->get();
+        $blog = $this::where('link', $link)->where('archived', 'false')->get()->first();
         return $blog;
     }
     public function getArchivedBlogs()

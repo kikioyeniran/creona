@@ -14,30 +14,97 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/artist/dashboard', 'PagesController@index')->name('artist.dashboard');
 
 // Additional Resource Controller Routes
 
-// Category Controllers
-Route::get('/categories/disable/{id}', 'CategoriesController@disable');
-Route::get('/categories/restore/{id}', 'CategoriesController@restore');
-Route::get('/categories/disabled', 'CategoriesController@disabled');
+// Art Services Route Groups
+Route::prefix('art-services')->group(function () {
+    Route::get('/disable/{id}', 'ArtServicesController@disable');
+    Route::get('/restore/{id}', 'ArtServicesController@restore');
+    Route::get('/disabled', 'ArtServicesController@disabled');
+    Route::get('/all', 'ArtServicesController@all');
+    Route::get('/{link}', 'ArtServices@displayByLink');
+});
 
-// Blog Controllers
-Route::get('/blog/archive/{id}', 'BlogController@archive');
-Route::get('/blog/restore/{id}', 'BlogController@restore');
-Route::get('/blog/archived', 'BlogController@archived');
-Route::get('/blog/all', 'BlogController@all');
+// Cards Route Groups
+Route::prefix('cards')->group(function () {
+    Route::get('/disable/{id}', 'CardsController@disable');
+    Route::get('/restore/{id}', 'CardsController@restore');
+    Route::get('/disabled', 'CardsController@disabled');
+    Route::get('/all', 'CardsController@all');
+    Route::get('/{link}', 'CardsController@displayByLink');
+});
 
-// Products Controllers
-Route::get('/products/disable/{id}', 'ProductsController@disable');
-Route::get('/products/restore/{id}', 'ProductsController@restore');
-Route::get('/products/disabled', 'ProductsController@disabled');
+// Tutorials Route Groups
+Route::prefix('tutorials')->group(function () {
+    Route::get('/disable/{id}', 'TutorialsController@disable');
+    Route::get('/restore/{id}', 'TutorialsController@restore');
+    Route::get('/disabled', 'TutorialsController@disabled');
+    Route::get('/all', 'TutorialsController@all');
+    Route::get('/{link}', 'TutorialsController@displayByLink');
+});
+
+// Ebooks Route Groups
+Route::prefix('ebooks')->group(function () {
+    Route::get('/disable/{id}', 'EbooksController@disable');
+    Route::get('/restore/{id}', 'EbooksController@restore');
+    Route::get('/disabled', 'EbooksController@disabled');
+    Route::get('/all', 'EbooksController@all');
+    Route::get('/{link}', 'EbooksController@displayByLink');
+});
+
+// Blog Route Groups
+Route::prefix('blog')->group(function () {
+    Route::get('/archived/{id}', 'BlogController@archive');
+    Route::get('/restore/{id}', 'BlogController@restore');
+    Route::get('/archived', 'BlogController@archived');
+    Route::get('/all', 'BlogController@all');
+    Route::get('/{link}', 'BlogController@displayByLink');
+});
+
+// Categories Route Groups
+Route::prefix('categories')->group(function () {
+    Route::get('/disable/{id}', 'CategoriesController@disable');
+    Route::get('/restore/{id}', 'CategoriesController@restore');
+    Route::get('/disabled', 'CategoriesController@disabled');
+});
+
+// Products Route Groups
+Route::prefix('products')->group(function () {
+    Route::get('/disable/{id}', 'ProductsController@disable');
+    Route::get('/restore/{id}', 'ProductsController@restore');
+    Route::get('/disabled', 'ProductsController@disabled');
+});
+
+// Featured Works Route Groups
+Route::prefix('featured-works')->group(function () {
+    Route::get('/disable/{id}', 'FeaturedWorksController@disable');
+    Route::get('/restore/{id}', 'FeaturedWorksController@restore');
+    Route::get('/approve/{id}', 'FeaturedWorksController@approve');
+    Route::get('/disapprove/{id}', 'FeaturedWorksController@disapprove');
+    Route::get('/{link}', 'FeaturedWorks@displayByLink');
+    Route::prefix('/admin')->group((function () {
+        Route::get('/all', 'FeaturedWorksController@admin_all');
+        Route::get('/pending', 'FeaturedWorksController@admin_pending');
+        Route::get('/disabled', 'FeaturedWorksController@AdminDisabled');
+        Route::get('/approved', 'FeaturedWorksController@AdminApproved');
+        Route::get('/disapproved', 'FeaturedWorksController@AdminDisapproved');
+    }));
+    Route::prefix('/artist')->group((function () {
+        Route::get('/all', 'FeaturedWorksController@all');
+        Route::get('/disabled', 'FeaturedWorksController@ArtistDisabled');
+        Route::get('/approved', 'FeaturedWorksController@ArtistApproved');
+        Route::get('/disapproved', 'FeaturedWorksController@ArtistDisapproved');
+    }));
+});
+
 
 // Resource Controllers
 Route::resource('categories', 'CategoriesController');
@@ -49,3 +116,16 @@ Route::resource('contact', 'ContactsController');
 Route::resource('gallery', 'GalleryController');
 Route::resource('home-page', 'HomePageController');
 Route::resource('products', 'ProductsController');
+Route::resource('art-services', 'ArtServicesController');
+Route::resource('cards', 'CardsController');
+Route::resource('ebooks', 'EbooksController');
+Route::resource('tutorials', 'TutorialsController');
+Route::resource('featured-works', 'FeaturedWorksController');
+
+// Artist Home Route
+// Route::get('/artist/dashboard', 'PagesController@index')->name('artist.dashboard');
+
+
+Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function () {
+    Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+});
